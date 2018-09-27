@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/scrape">Scrape Articles</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Washington Post Scraper</h1>
+            <p class="lead text-center">Scrape all of the articles from the Washington Post and save/add notes to your favorites!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {{#if articles}}
+            {{#each articles}}
+            <div class="card w-90">
+                <div class="card-header">
+                    <a href={{link}} target="_blank">
+                        <h2>{{title}}</h2>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{summary}}</p>
+                    <button id={{_id}} class="btn btn-primary save-btn">Save Article</button>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="card w-90">
+                <div class="card-body text-center">
+                    Looks like there aren't any articles! Get scraping!
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

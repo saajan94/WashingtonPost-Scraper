@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/scrape">Scrape Articles</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Washington Post Scraper</h1>
+            <p class="lead text-center">Scrape all of the articles from the Washington Post and save/add notes to your favorites!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            {{#each articles}}
+            <div class="card w-90">
+                <div class="card-header">
+                    <a href={{link}} target="_blank">
+                        <h2>{{title}}</h2>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{summary}}</p>
+                    <button data={{_id}} class="btn btn-info note-btn">Article Notes</button>
+                    <button data={{_id}} class="btn btn-danger delete-btn">Delete from Saved</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="note-modal" tabindex="-1" role="dialog" aria-labelledby="successMessage" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notes for Article <span id="article-id"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <ul class="list-group list-group-flush notes-available">
+                    </ul>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label for="note-input">Enter Note Here</label>
+                    <textarea class="form-control" id="note-input" rows="3" placeholder="New Note"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="save-note">Save Note</button>
+            </div>
+        </div>
+    </div>
+</div>
