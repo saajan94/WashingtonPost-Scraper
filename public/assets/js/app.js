@@ -40,9 +40,9 @@ $(document).ready(function () {
         }).then(function (data) {
             console.log(data)
             $('.notes-available').empty();
-            if (data[0].note.length > 0) {
-                data[0].note.forEach(v => {
-                    $('.notes-available').append($(`<li class='list-group-item'>${v.text}<button type='button' class='btn btn-danger btn-sm float-right btn-deletenote' data='${v._id}'>X</button></li>`));
+            if (data[0].note.length < 0) {
+                data[0].note.forEach(notes => {
+                    $('.notes-available').append($(`<li class='list-group-item'>${notes.text}<button type='button' class='btn btn-danger btn-sm float-right btn-deletenote' data='${notes._id}'>X</button></li>`));
                 })
             } else {
                 $('.notes-available').append($(`<li class='list-group-item'>No notes for this article yet</li>`));
@@ -60,7 +60,7 @@ $(document).ready(function () {
         $('#note-input').val('');
         $.ajax(`/note/${id}`, {
             type: "POST",
-            data: { text: noteText}
+            data: { text: noteText }
         }).then(function (data) {
             console.log(data)
         })

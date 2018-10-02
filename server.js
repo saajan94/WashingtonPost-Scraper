@@ -68,7 +68,7 @@ app.get("/scrape", function (req, res) {
                 } else {
                     console.log("Already exists!")
                 }
-            });    
+            });
         });
         res.redirect("/");
     });
@@ -160,9 +160,9 @@ app.post("/note/:id", function (req, res) {
                     _id: req.params.id
                 },
                 {
-
-                    note: dbNote._id
-
+                    $push: {
+                        note: dbNote._id
+                    }
                 },
                 {
                     new: true
